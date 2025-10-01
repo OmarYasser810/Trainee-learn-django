@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login page
+{% endblock title %}
+
+{% block content %}
+    <div style="margin: 20px 0;">
+        <a href="{% url 'trainee_list' %}">
+            <button type="button">Trainee List</button>
+        </a>
+        <a href="{% url 'insert_trainee' %}">
+            <button type="button">Insert Trainee</button>
+        </a>
+    </div>
+{% endblock content %}

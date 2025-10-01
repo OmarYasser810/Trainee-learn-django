@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Trainee Page{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/trainee.css' %}">
+<h2>Trainee List</h2>
+
+<div style="margin-bottom: 16px;">
+    <a href="{% url 'insert_trainee' %}">
+        <button type="button">Insert Trainee</button>
+    </a>
+</div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Photo</th>
+        <th>Actions</th>
+    </tr>
+    {% for trainee in trainees %}
+    <tr>
+        <td>{{ trainee.id }}</td>
+        <td>{{ trainee.name }}</td>
+        <td><a href="mailto:{{ trainee.email }}">{{ trainee.email }}</a></td>
+        <td>
+            {% if trainee.statue %}
+                Active
+            {% else %}
+                Inactive
+            {% endif %}
+        </td>
+
+        <td>
+            {% if trainee.photo %}
+                <img src="{{ trainee.photo.url }}" alt="photo">
+            {% else %}
+                No Image
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'update_trainee' trainee.id %}">Edit</a>
+            <a href="{% url 'delete_trainee' trainee.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
